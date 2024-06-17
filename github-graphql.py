@@ -134,7 +134,7 @@ def start_repository_migration(repo_name, repo_url, organization_id):
     return response["data"]
 
 
-def get_repository_migration(start_migration_id):
+def get_repository_migration_statu(start_migration_id):
 	get_repository_migration_status = """{
 		node (id:"%s"){
 			... on Migration {
@@ -160,14 +160,14 @@ organization_id = get_organization()["id"]
 #"MS_kgDaACQ0Mzg1NzA0Mi00MTdkLTRmODQtYTJlYi1jYzU0NTE3MDdmMjE"
 migration_id = create_repository_migration(
     "research-hub",
-    "https://gitlab.com/mandar.harkare/research-hub.git",
+    "https://gitlab.com/mandar.harkare/research-hub",
     organization_id
 )["createMigrationSource"]["migrationSource"]["id"]
 
 start_migration_id = start_repository_migration(
     "research-hub",
-    "https://gitlab.com/mandar.harkare/research-hub.git",
+    "https://gitlab.com/mandar.harkare/research-hub",
     organization_id
 )["startRepositoryMigration"]["repositoryMigration"]["id"]
 
-start_repository_migration(start_migration_id)
+get_repository_migration_statu(start_migration_id)
